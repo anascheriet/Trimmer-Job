@@ -1,0 +1,10 @@
+spring:
+    application:
+        name: trimmer
+
+
+input:
+    file:
+        path: /Users/anascheriet/Desktop/inpusdt.txt
+
+chunk: 10
