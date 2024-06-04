@@ -1,5 +1,6 @@
 package com.kata.trimmer.configuration;
 
+import com.kata.trimmer.listener.TrimmerJobListener;
 import com.kata.trimmer.model.Coordinates;
 import com.kata.trimmer.model.Trimmer;
 import com.kata.trimmer.steps.TrimmerItemProcessor;
@@ -26,6 +27,7 @@ public class TrimmerAppConfiguration {
     private final TrimmerItemReader reader;
     private final TrimmerItemProcessor processor;
     private final TrimmerItemWriter writer;
+    private final TrimmerJobListener trimmerJobListener;
 
     @Value("${chunk}")
     Integer chunkSize;
@@ -39,7 +41,7 @@ public class TrimmerAppConfiguration {
                     .processor(processor)
                     .writer(writer)
                     .build();
-        return jobBuilderFactory.get("trimmer-job").start(processTrimmers).preventRestart().build();
+        return jobBuilderFactory.get("trimmer-job").start(processTrimmers).listener(trimmerJobListener).preventRestart().build();
 
     }
 

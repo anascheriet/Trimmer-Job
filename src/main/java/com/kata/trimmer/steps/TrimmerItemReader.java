@@ -6,11 +6,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.item.ItemReader;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -38,7 +36,7 @@ public class TrimmerItemReader implements ItemReader<Trimmer> {
     private void setUpInputFile() throws IOException {
         Path path = Paths.get(filePath);
         if (!Files.exists(path)) {
-            Resource resource = new ClassPathResource("input.txt");
+            Resource resource = new ClassPathResource("files/input.txt");
             reader = new BufferedReader(new FileReader(resource.getFile().getPath()));
         }
         else {
