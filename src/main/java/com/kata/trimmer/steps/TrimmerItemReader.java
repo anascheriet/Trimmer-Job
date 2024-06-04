@@ -12,6 +12,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -33,6 +34,7 @@ public class TrimmerItemReader implements ItemReader<Trimmer> {
         setUpInputFile();
         getSurfaceCoordinates();
     }
+
     private void setUpInputFile() throws IOException {
         Path path = Paths.get(filePath);
         if (!Files.exists(path)) {
@@ -42,7 +44,6 @@ public class TrimmerItemReader implements ItemReader<Trimmer> {
         else {
             reader = new BufferedReader(new FileReader(filePath));
         }
-
     }
 
     private void getSurfaceCoordinates() throws IOException {
@@ -50,9 +51,9 @@ public class TrimmerItemReader implements ItemReader<Trimmer> {
         String[] surfaceDimensions = reader.readLine().split(" ");
         surfaceCoordinates = Coordinates
                 .builder()
-                .x(Integer.parseInt(surfaceDimensions[0]))
-                .y(Integer.parseInt(surfaceDimensions[1]))
-                .build();
+                    .x(Integer.parseInt(surfaceDimensions[0]))
+                    .y(Integer.parseInt(surfaceDimensions[1]))
+                    .build();
     }
 
     @Override
