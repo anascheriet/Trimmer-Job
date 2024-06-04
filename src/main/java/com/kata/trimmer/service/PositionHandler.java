@@ -24,22 +24,22 @@ public class PositionHandler {
             }
             else if (c.equals("A")) {
                 switch (currentDirection) {
-                    case "N":
-                        if (y < maxY)
-                            y++;
-                        break;
-                    case "S":
-                        if (y > 0)
-                            y--;
-                        break;
-                    case "E":
-                        if (x < maxX)
-                            x++;
-                        break;
-                    case "W":
-                        if (x > 0)
-                            x--;
-                        break;
+                case "N":
+                    if (y < maxY)
+                        y++;
+                    break;
+                case "S":
+                    if (y > 0)
+                        y--;
+                    break;
+                case "E":
+                    if (x < maxX)
+                        x++;
+                    break;
+                case "W":
+                    if (x > 0)
+                        x--;
+                    break;
                 }
             }
         }
@@ -50,36 +50,36 @@ public class PositionHandler {
     }
 
     private String determineNextDirection(String currentDirection, String command) {
-        if (command.equals("G")) {
-            if (currentDirection.equals("N")) {
-                return "W";
-            }
-            if (currentDirection.equals("W")) {
-                return "S";
-            }
-            if (currentDirection.equals("S")) {
-                return "E";
-            }
-            if (currentDirection.equals("E")) {
-                return "N";
-            }
+        switch (command) {
+            case "G":
+                switch (currentDirection) {
+                    case "N":
+                        return "W";
+                    case "W":
+                        return "S";
+                    case "S":
+                        return "E";
+                    case "E":
+                        return "N";
+                    default:
+                        return currentDirection;
+                }
+            case "D":
+                switch (currentDirection) {
+                    case "N":
+                        return "E";
+                    case "W":
+                        return "N";
+                    case "S":
+                        return "W";
+                    case "E":
+                        return "S";
+                    default:
+                        return currentDirection;
+                }
+            default:
+                return currentDirection;
         }
-
-        if (command.equals("D")) {
-            if (currentDirection.equals("N")) {
-                return "E";
-            }
-            if (currentDirection.equals("W")) {
-                return "N";
-            }
-            if (currentDirection.equals("S")) {
-                return "W";
-            }
-            if (currentDirection.equals("E")) {
-                return "S";
-            }
-        }
-
-        return currentDirection;
     }
+
 }
