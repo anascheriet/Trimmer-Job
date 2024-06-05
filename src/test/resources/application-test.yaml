@@ -1,0 +1,10 @@
+spring:
+    application:
+        name: trimmer
+input:
+    file:
+        path: ${INPUT_FILE_PATH:/Users/anascheriet/Desktop/inpdut.txt}
+
+chunk: 10
+
+
